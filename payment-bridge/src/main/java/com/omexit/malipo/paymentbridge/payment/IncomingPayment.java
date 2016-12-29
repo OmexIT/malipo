@@ -1,5 +1,6 @@
-package com.omexit.paymentbridge.core.payment;
+package com.omexit.malipo.paymentbridge.payment;
 
+import com.omexit.malipo.commonlib.types.PaymentType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -12,8 +13,6 @@ import javax.persistence.Entity;
 @Entity(name = "incoming")
 @EqualsAndHashCode(callSuper = false)
 public class IncomingPayment extends Payment {
-
-	private static final long serialVersionUID = -1594760473960899561L;
 
 	public PaymentType getPaymentType() {
         return PaymentType.INCOMING;

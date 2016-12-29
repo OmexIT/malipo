@@ -1,7 +1,7 @@
-package com.omexit.paymentbridge.core.channel;
+package com.omexit.malipo.paymentbridge.channel;
 
-import com.omexit.paymentbridge.core.util.BaseController;
-import com.omexit.paymentbridge.core.util.exception.ResourceNotFoundException;
+import com.omexit.malipo.commonlib.exception.ResourceNotFoundException;
+import com.omexit.malipo.commonlib.util.BaseControllerV1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -11,15 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * The ChannelController class is a RESTful web service controller. The
+ * The ChannelControllerV1 class is a RESTful web service controller. The
  * <code>@RestController</code> annotation informs Spring that each
  * <code>@RequestMapping</code> method returns a <code>@ResponseBody</code>.
  *
  * @author Antony Omeri
  */
 @RestController
-@RequestMapping(value = "/v1")
-public class ChannelController extends BaseController {
+public class ChannelController extends BaseControllerV1 {
     @Autowired
     ChannelService channelService;
 
@@ -29,7 +28,7 @@ public class ChannelController extends BaseController {
      * @return A ResponseEntity containing a Collection of Channel Objects
      */
     @RequestMapping(
-            value = "/channel",
+            value = CHANNEL_URL,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Channel>> getChannels() {
@@ -50,7 +49,7 @@ public class ChannelController extends BaseController {
      * @return A ResponseEntity containing a single Channel object,
      */
     @RequestMapping(
-            value = "/channel/{id}",
+            value = GET_CHANNEL_URL,
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Channel> getChannels(@PathVariable Long id) throws ResourceNotFoundException {
@@ -80,7 +79,7 @@ public class ChannelController extends BaseController {
      * @throws Exception Thrown if a problem occurs completing the request.
      */
     @RequestMapping(
-            value = "/channel",
+            value = "CHANNEL_URL",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
@@ -111,8 +110,8 @@ public class ChannelController extends BaseController {
      * @throws Exception Thrown if a problem occurs completing the request.
      */
     @RequestMapping(
-            value = "/channel/{id}",
-            method = RequestMethod.PUT,
+            value = GET_CHANNEL_URL,
+            method = RequestMethod.PATCH,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Channel> updateChannel(@RequestBody Channel channel) {

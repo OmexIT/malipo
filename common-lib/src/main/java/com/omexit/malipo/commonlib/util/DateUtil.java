@@ -1,4 +1,4 @@
-package com.omexit.paymentbridge.core.util;
+package com.omexit.malipo.commonlib.util;
 
 import org.joda.time.DateTime;
 import org.joda.time.Years;

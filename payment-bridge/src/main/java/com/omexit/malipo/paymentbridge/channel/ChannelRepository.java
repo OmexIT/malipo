@@ -1,4 +1,4 @@
-package com.omexit.paymentbridge.core.channel;
+package com.omexit.malipo.paymentbridge.channel;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

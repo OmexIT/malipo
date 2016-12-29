@@ -1,4 +1,4 @@
-package com.omexit.paymentbridge.core.channel;
+package com.omexit.malipo.paymentbridge.channel;
 
 import java.util.List;
 

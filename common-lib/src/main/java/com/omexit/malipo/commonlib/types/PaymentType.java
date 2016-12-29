@@ -1,4 +1,4 @@
-package com.omexit.paymentbridge.core.payment;
+package com.omexit.malipo.commonlib.types;
 
 /**
  * Created by Antony on 2/11/2016.

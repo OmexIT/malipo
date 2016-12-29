@@ -1,5 +1,6 @@
-package com.omexit.paymentbridge.core.payment;
+package com.omexit.malipo.paymentbridge.payment;
 
+import com.omexit.malipo.commonlib.types.PaymentStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,6 @@ public class PaymentServiceImpl  implements PaymentService {
     @Override
     public Payment findPaymentById(Long id) {
         return paymentRepository.findById(id);
-    }
-
-    @Override
-    public Payment findPaymentIfExist(Long entityId, String tenantId, Long clientId, String entity) {
-        return paymentRepository.findByEntityIdAndTenantIdAndClientIdAndEntity(entityId, tenantId, clientId, entity);
     }
 
     @Override

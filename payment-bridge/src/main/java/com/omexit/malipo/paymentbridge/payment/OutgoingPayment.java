@@ -1,8 +1,9 @@
-package com.omexit.paymentbridge.core.payment;
+package com.omexit.malipo.paymentbridge.payment;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.omexit.paymentbridge.core.util.DateUtil;
+import com.omexit.malipo.commonlib.util.DateUtil;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.Column;
@@ -12,46 +13,15 @@ import java.util.Date;
 /**
  * Created by Antony on 2/9/2016.
  */
+@Data
 @Entity(name = "outgoing")
 @EqualsAndHashCode(callSuper = false)
 public class OutgoingPayment extends Payment {
 
-	private static final long serialVersionUID = 8005427823824625540L;
-
-	@JsonIgnore
-    @Column(name = "actual_disbursement_date")
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = DateUtil.DEFAULT_DATE_FORMAT)
+    @JsonProperty("disbursement_date")
+    @Column(name = "disbursement_date", nullable = false)
     private Date actualDisbursementDate;
-
-    @JsonProperty("actual_disbursement_date")
-    private String strActualDisbursementDate;
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-
-    public PaymentType getPaymentType() {
-        return PaymentType.OUTGOING;
-    }
-
-    public Date getActualDisbursementDate() {
-        return actualDisbursementDate;
-    }
-
-    public void setActualDisbursementDate(Date actualDisbursementDate) {
-        this.actualDisbursementDate = actualDisbursementDate;
-    }
-
-    public String getStrActualDisbursementDate() {
-        if (getDateCreated() != null) {
-            strActualDisbursementDate = DateUtil.formatDate(getActualDisbursementDate(), DateUtil.DEFAULT_DATE_FORMAT);
-        }
-
-        return strActualDisbursementDate;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", actualDisbursementDate: " + getStrActualDisbursementDate();
-    }
 }

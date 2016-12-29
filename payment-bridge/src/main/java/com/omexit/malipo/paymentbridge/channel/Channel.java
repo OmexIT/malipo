@@ -1,8 +1,10 @@
-package com.omexit.paymentbridge.core.channel;
+package com.omexit.malipo.paymentbridge.channel;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.omexit.paymentbridge.core.util.DateUtil;
+import com.omexit.malipo.commonlib.types.ChannelType;
+import com.omexit.malipo.commonlib.util.DateUtil;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +12,7 @@ import java.util.Date;
 /**
  * Created by Antony on 2/10/2016.
  */
+@Data
 @Entity(name = "tbl_channels")
 public class Channel {
     @Id
@@ -23,127 +26,35 @@ public class Channel {
     private String channelEndpoint;
     @JsonProperty("channel_type")
     @Column(name = "channel_type", nullable = false)
-    private ChannelClassificationType channelType;
+    private ChannelType channelType;
     @JsonProperty("active")
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
     @JsonProperty("callback")
     @Column(name = "callback", nullable = false)
     private boolean isCallback;
-    @JsonIgnore
-    @Column(name = "date_created", updatable = false)
-    private Date dateCreated;
-    @JsonIgnore
-    @Column(name = "last_modified")
-    private Date lastModified;
-    @JsonProperty("max_retry_count")
-    @Column(name = "max_retry_count", nullable = false)
-    private Integer maxRetryCount;
-    @Transient
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = DateUtil.DEFAULT_DATE_FORMAT)
     @JsonProperty("date_created")
-    private String strDateCreated;
-    @Transient
+    @Column(name = "date_created", updatable = false, nullable = false)
+    private Date dateCreated;
+    @JsonFormat(
+            shape = JsonFormat.Shape.STRING,
+            pattern = DateUtil.DEFAULT_DATE_FORMAT)
     @JsonProperty("last_modified")
-    private String strLastModified;
+    @Column(name = "last_modified", nullable = false)
+    private Date lastModified;
 
     @PrePersist
     protected void onCreate() {
         Date date = new Date();
-        setDateCreated(date);
-        setLastModified(date);
+        this.dateCreated = date;
+        this.lastModified = date;
     }
 
     @PreUpdate
     protected void onUpdate() {
-        setLastModified(new Date());
+        this.lastModified = new Date();
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getChannelName() {
-        return channelName;
-    }
-
-    public void setChannelName(String channelName) {
-        this.channelName = channelName;
-    }
-
-    public String getChannelEndpoint() {
-        return channelEndpoint;
-    }
-
-    public void setChannelEndpoint(String channelEndpoint) {
-        this.channelEndpoint = channelEndpoint;
-    }
-
-    public ChannelClassificationType getChannelType() {
-        return channelType;
-    }
-
-    public void setChannelType(ChannelClassificationType channelType) {
-        this.channelType = channelType;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public boolean isCallback() {
-        return isCallback;
-    }
-
-    public void setCallback(boolean callback) {
-        isCallback = callback;
-    }
-
-    public Date getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public Date getLastModified() {
-        return lastModified;
-    }
-
-    public void setLastModified(Date lastModified) {
-        this.lastModified = lastModified;
-    }
-
-    public Integer getMaxRetryCount() {
-        return maxRetryCount;
-    }
-
-    public void setMaxRetryCount(Integer maxRetryCount) {
-        this.maxRetryCount = maxRetryCount;
-    }
-
-
-    public String getStrDateCreated() {
-        if (this.getDateCreated() != null) {
-            strDateCreated = DateUtil.formatDate(this.getDateCreated(), DateUtil.DEFAULT_DATE_FORMAT);
-        }
-
-        return strDateCreated;
-    }
-
-    public String getStrLastModified()  {
-        if (this.getLastModified() != null) {
-            strLastModified = DateUtil.formatDate(this.getLastModified(), DateUtil.DEFAULT_DATE_FORMAT);
-        }
-        return strLastModified;
-    }
-
 }

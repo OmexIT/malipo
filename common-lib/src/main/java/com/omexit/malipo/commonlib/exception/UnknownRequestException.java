@@ -1,18 +1,18 @@
-package com.omexit.paymentbridge.core.util.exception;
+package com.omexit.malipo.commonlib.exception;
 
 
-import com.omexit.paymentbridge.core.util.types.ErrorCode;
+import com.omexit.malipo.commonlib.types.ErrorCode;
 
 /**
- * Created by Antony on 7/19/2016.
+ * Created by aomeri on 12/9/2015.
  */
-public class ResourceNotFoundException extends Exception {
-    private static final long serialVersionUID = 48598860122L;
+public class UnknownRequestException extends Exception {
+    private static final long serialVersionUID = 48598860123L;
     private String developerMessage;
     private ErrorCode errorCode;
     private String message;
 
-    public ResourceNotFoundException(String message, String developerMessage, ErrorCode errorCode) {
+    public UnknownRequestException(String message, String developerMessage, ErrorCode errorCode) {
         super(developerMessage);
         this.developerMessage = developerMessage;
         this.errorCode = errorCode;

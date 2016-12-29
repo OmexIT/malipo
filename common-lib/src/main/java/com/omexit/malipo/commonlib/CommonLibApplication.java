@@ -1,4 +1,4 @@
-package com.omexit.commonlib;
+package com.omexit.malipo.commonlib;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

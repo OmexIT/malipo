@@ -1,5 +1,7 @@
-package com.omexit.paymentbridge.core.payment;
+package com.omexit.malipo.paymentbridge.payment;
 
+
+import com.omexit.malipo.commonlib.types.PaymentStatus;
 
 import java.util.Date;
 import java.util.List;
@@ -13,8 +15,6 @@ public interface PaymentService {
     Payment saveOrUpdatePayment(Payment payment);
 
     Payment findPaymentById(Long id);
-
-    Payment findPaymentIfExist(Long entityId, String tenantId, Long clientId, String entity);
 
     List<Payment> findTransactionsToProcess(Date actualDisbursementDate, PaymentStatus paymentStatus);
 }

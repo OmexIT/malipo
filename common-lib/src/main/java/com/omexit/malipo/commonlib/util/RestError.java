@@ -1,4 +1,4 @@
-package com.omexit.paymentbridge.core.util;
+package com.omexit.malipo.commonlib.util;
 
 import lombok.Data;
 

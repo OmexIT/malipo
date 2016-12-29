@@ -1,5 +1,6 @@
-package com.omexit.paymentbridge.core.payment;
+package com.omexit.malipo.paymentbridge.payment;
 
+import com.omexit.malipo.commonlib.types.PaymentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -23,5 +24,4 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     List<Payment> findByTransactionAmount(Double lastModified);
 
-    Payment findByEntityIdAndTenantIdAndClientIdAndEntity(Long entityId, String tenantId, Long clientId, String entity);
 }

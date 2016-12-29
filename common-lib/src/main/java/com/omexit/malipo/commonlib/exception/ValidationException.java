@@ -1,7 +1,7 @@
-package com.omexit.paymentbridge.core.util.exception;
+package com.omexit.malipo.commonlib.exception;
 
 
-import com.omexit.paymentbridge.core.util.types.ErrorCode;
+import com.omexit.malipo.commonlib.types.ErrorCode;
 
 /**
  * Created by aomeri on 12/9/2015.

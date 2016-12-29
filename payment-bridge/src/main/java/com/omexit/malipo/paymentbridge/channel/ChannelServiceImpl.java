@@ -1,4 +1,4 @@
-package com.omexit.paymentbridge.core.channel;
+package com.omexit.malipo.paymentbridge.channel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,12 @@ import java.util.List;
  */
 @Service
 public class ChannelServiceImpl implements ChannelService {
+    private final ChannelRepository channelRepository;
+
     @Autowired
-    ChannelRepository channelRepository;
+    public ChannelServiceImpl(ChannelRepository channelRepository) {
+        this.channelRepository = channelRepository;
+    }
 
     @Override
     public Channel saveOrUpdateChannel(Channel channel) {

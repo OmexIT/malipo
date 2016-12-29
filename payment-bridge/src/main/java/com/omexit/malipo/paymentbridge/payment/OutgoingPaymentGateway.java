@@ -1,4 +1,4 @@
-package com.omexit.paymentbridge.core.payment;
+package com.omexit.malipo.paymentbridge.payment;
 
 import org.springframework.messaging.Message;
 
